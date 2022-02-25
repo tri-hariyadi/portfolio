@@ -86,7 +86,7 @@ const Sidebar = () => {
 				onClick={changeTheme}
 			>
 				<div className='flex flex-row items-center justify-center'>
-					<span className='mr-2'>Toggle {dark ? 'Dark' : 'Light'}</span>
+					<span className='mr-2'>Toggle {dark ? 'Light' : 'Dark'}</span>
 					<div className='text-yellow-300 font-medium'>
 						{dark ? <BsFillSunFill className='text-xl' /> : <BsFillMoonStarsFill />}
 					</div>
