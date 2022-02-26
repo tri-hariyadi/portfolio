@@ -15,7 +15,12 @@ const getBaseUrl = (env: string): string => {
 
 export const getServerSideProps: GetServerSideProps = async ({ res }) => {
 	const staticPages = fs
-		.readdirSync('pages')
+		.readdirSync(
+			{
+				development: 'pages',
+				production: './',
+			}[process.env.NODE_ENV]
+		)
 		.filter(staticPage => {
 			return !['_app.tsx', '_document.tsx', '_error.tsx', 'sitemap.xml.tsx', 'api'].includes(
 				staticPage
