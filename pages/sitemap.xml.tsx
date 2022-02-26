@@ -18,7 +18,7 @@ export const getServerSideProps: GetServerSideProps = async ({ res }) => {
 		.readdirSync(
 			{
 				development: 'pages',
-				production: './.next/serverless/pages',
+				production: './',
 			}[process.env.NODE_ENV]
 		)
 		.filter(staticPage => {
