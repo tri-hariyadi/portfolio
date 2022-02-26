@@ -10,7 +10,7 @@ type Url = {
 	route: string;
 	date?: Date;
 };
-const excludedRoutes: Array<string> = ['/sitemap', '/404'];
+const excludedRoutes: Array<string> = ['/sitemap.xml', '/404', '/api'];
 
 const ReadManifestFile = (basePath: string): object => {
 	const routes_manifest_path = path.join(basePath + '/.next/server/pages-manifest.json');
@@ -69,23 +69,28 @@ const GetPathsFromBuildFolder = (
 };
 
 const GetUrlElement = ({ host, route, date }: Url): string => {
-	if (date) {
-		return `<url>
+	return `<url>
       <loc>${host}${route}</loc>
       <lastmod>${new Date().toISOString()}</lastmod>
+      <changefreq>monthly</changefreq>
+      <priority>1.0</priority>
     </url>`;
-	} else return `<url><loc>${host}${route}</loc></url>`;
 };
 
 const GetSitemapXml = (urls: Array<Url>): string => `<?xml version="1.0" encoding="UTF-8"?>
-    <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+      xmlns:news="http://www.google.com/schemas/sitemap-news/0.9" 
+      xmlns:xhtml="http://www.w3.org/1999/xhtml" 
+      xmlns:mobile="http://www.google.com/schemas/sitemap-mobile/1.0" 
+      xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" 
+      xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
     ${urls.map(url => GetUrlElement(url)).join('')}
     </urlset>`;
 
 export const getServerSideProps: GetServerSideProps = async ({ res }) => {
 	const basePath: string = process.cwd();
 	const routes_manifest: object = ReadManifestFile(basePath);
-	const host: string = 'https://example.com';
+	const host: string = 'https://trihariyadi.vercel.app';
 
 	let routes: Array<Url> = GetPathsFromManifest(routes_manifest, host);
 	const pagesPath = path.join(basePath + '/.next/server/pages/');
