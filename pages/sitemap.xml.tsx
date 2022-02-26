@@ -10,7 +10,7 @@ type Url = {
 	route: string;
 	date?: Date;
 };
-const excludedRoutes: Array<string> = ['/sitemap.xml', '/404', '/api'];
+const excludedRoutes: Array<string> = ['/sitemap.xml', '/404', '/api/hello'];
 
 const ReadManifestFile = (basePath: string): object => {
 	const routes_manifest_path = path.join(basePath + '/.next/server/pages-manifest.json');
