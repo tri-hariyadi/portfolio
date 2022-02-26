@@ -22,12 +22,12 @@ export const getServerSideProps: GetServerSideProps = async ({ res }) => {
 			}[process.env.NODE_ENV]
 		)
 		.filter(staticPage => {
-			return !['_app.tsx', '_document.tsx', '_error.tsx', 'sitemap.xml.tsx', 'api'].includes(
+			return !['_app.js', '_document.js', '_error.js', 'sitemap.xml.js', 'api'].includes(
 				staticPage
 			);
 		})
 		.map(staticPagePath => {
-			const path = staticPagePath.replace('pages', '').replace('.tsx', '').replace('.mdx', '');
+			const path = staticPagePath.replace('pages', '').replace('.js', '').replace('.mdx', '');
 			const route = path === '/index' ? '' : path;
 			return `${getBaseUrl(process.env.NODE_ENV)}${route}`;
 		});
