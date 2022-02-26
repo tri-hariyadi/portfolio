@@ -27,8 +27,8 @@ export const getServerSideProps: GetServerSideProps = async ({ res }) => {
 			);
 		})
 		.map(staticPagePath => {
-			const path = staticPagePath.replace('pages', '').replace('.js', '').replace('.mdx', '');
-			const route = path === '/index' ? '' : path;
+			const path = staticPagePath.replace('pages', '').replace('.html', '');
+			const route = path === 'index' ? '' : path;
 			return `${getBaseUrl(process.env.NODE_ENV)}${route}`;
 		});
 
