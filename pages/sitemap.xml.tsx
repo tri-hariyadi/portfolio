@@ -10,7 +10,7 @@ type Url = {
 	route: string;
 	date?: Date;
 };
-const excludedRoutes: Array<string> = ['/sitemap.xml', '/404', '/api/hello'];
+const excludedRoutes: Array<string> = ['/sitemap.xml', '/404', '/api'];
 
 const ReadManifestFile = (basePath: string): object => {
 	const routes_manifest_path = path.join(basePath + '/.next/server/pages-manifest.json');
@@ -95,8 +95,9 @@ export const getServerSideProps: GetServerSideProps = async ({ res }) => {
 	let routes: Array<Url> = GetPathsFromManifest(routes_manifest, host);
 	const pagesPath = path.join(basePath + '/.next/server/pages/');
 	routes = routes.concat(GetPathsFromBuildFolder(pagesPath, [], host, pagesPath));
+	console.log(routes);
 
-	routes = routes.filter(el => !excludedRoutes.includes(el.route));
+	routes = routes.filter(el => !excludedRoutes.includes(`/${el.route.split('/')[1]}`));
 	const sitemap: string = GetSitemapXml(routes);
 
 	res.setHeader('Content-Type', 'text/xml');
