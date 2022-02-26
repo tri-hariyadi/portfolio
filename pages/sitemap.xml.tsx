@@ -5,64 +5,99 @@ import path from 'path';
 
 const Sitemap = () => {};
 
-function getPageFiles(directory: string, files = []): Array<string> {
-	const entries = fs.readdirSync(directory, { withFileTypes: true });
-	entries.forEach(entry => {
-		const absolutePath = path.resolve(directory, entry.name);
-		if (entry.isDirectory()) {
-			// wow recursive 🐍
-			getPageFiles(absolutePath, files);
-		} else if (isPageFile(absolutePath)) {
-			files.push(absolutePath);
-		}
-	});
-	return files;
-}
+type Url = {
+	host: string;
+	route: string;
+	date?: Date;
+};
+const excludedRoutes: Array<string> = ['/sitemap', '/404'];
 
-function isPageFile(filename) {
-	return path.extname(filename) === '.html' && !filename.endsWith('404.html');
-}
+const ReadManifestFile = (basePath: string): object => {
+	const routes_manifest_path = path.join(basePath + '/.next/server/pages-manifest.json');
 
-const getBaseUrl = (env: string): string => {
-	const baseUrl = {
-		development: 'http://localhost:3000',
-		production: 'https://trihariyadi.vercel.app/',
-	};
-	console.log(env);
-	return baseUrl[env];
+	// Read from the file
+	if (fs.existsSync(routes_manifest_path)) {
+		const raw_json = fs.readFileSync(routes_manifest_path);
+		return JSON.parse(raw_json.toString());
+	} else return null;
 };
 
-export const getServerSideProps: GetServerSideProps = async ({ res }) => {
-	const staticPages = getPageFiles('./.next/server/pages').map(staticPagePath => {
-		// const path = staticPagePath.replace('.html', '');
-		// const route = path === 'index' ? '' : path;
-		return `${getBaseUrl(process.env.NODE_ENV)}${staticPagePath}`;
+const GetPathsFromManifest = (manifest: any, host: string): Array<Url> => {
+	let routes: Array<string> = [];
+
+	for (let [route, file] of Object.entries(manifest)) {
+		if (!isNextInternalUrl(route)) {
+			// Add static paths
+			routes = routes.concat(route);
+		}
+	}
+
+	let sitemapUrls: Array<Url> = [];
+	routes.forEach(route => {
+		sitemapUrls.push({ host: host, route: route });
 	});
 
-	const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
+	return sitemapUrls;
+};
+
+const isNextInternalUrl = (path: string): boolean => {
+	return new RegExp(/[^\/]*^.[_]|(?:\[)/g).test(path);
+};
+
+const GetPathsFromBuildFolder = (
+	dir: string,
+	urlList: Array<Url>,
+	host: string,
+	basePath: string
+): Array<Url> => {
+	const files: string[] = fs.readdirSync(dir);
+	urlList = urlList || [];
+
+	files.forEach(file => {
+		if (fs.statSync(dir + file).isDirectory()) {
+			urlList = GetPathsFromBuildFolder(dir + file + '/', urlList, host, basePath);
+		} else {
+			if (path.extname(file) == '.json') {
+				let route = path.join(dir + file.substring(0, file.length - 5));
+				route = route.replace(basePath, '/');
+				urlList.push({ host: host, route: route });
+			}
+		}
+	});
+
+	return urlList;
+};
+
+const GetUrlElement = ({ host, route, date }: Url): string => {
+	if (date) {
+		return `<url>
+      <loc>${host}${route}</loc>
+      <lastmod>${new Date().toISOString()}</lastmod>
+    </url>`;
+	} else return `<url><loc>${host}${route}</loc></url>`;
+};
+
+const GetSitemapXml = (urls: Array<Url>): string => `<?xml version="1.0" encoding="UTF-8"?>
     <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-      ${staticPages
-				.map(url => {
-					return `
-            <url>
-              <loc>${url}</loc>
-              <lastmod>${new Date().toISOString()}</lastmod>
-              <changefreq>monthly</changefreq>
-              <priority>1.0</priority>
-            </url>
-          `;
-				})
-				.join('')}
-    </urlset>
-  `;
+    ${urls.map(url => GetUrlElement(url)).join('')}
+    </urlset>`;
+
+export const getServerSideProps: GetServerSideProps = async ({ res }) => {
+	const basePath: string = process.cwd();
+	const routes_manifest: object = ReadManifestFile(basePath);
+	const host: string = 'https://example.com';
+
+	let routes: Array<Url> = GetPathsFromManifest(routes_manifest, host);
+	const pagesPath = path.join(basePath + '/.next/server/pages/');
+	routes = routes.concat(GetPathsFromBuildFolder(pagesPath, [], host, pagesPath));
+
+	routes = routes.filter(el => !excludedRoutes.includes(el.route));
+	const sitemap: string = GetSitemapXml(routes);
 
 	res.setHeader('Content-Type', 'text/xml');
 	res.write(sitemap);
 	res.end();
-
-	return {
-		props: {},
-	};
+	return { props: {} };
 };
 
 export default Sitemap;
