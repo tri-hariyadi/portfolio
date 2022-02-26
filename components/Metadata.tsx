@@ -19,7 +19,7 @@ const Metadata: React.FC<{ title?: string; desc?: string; canonical?: string }> 
 				content={desc || 'Tri Hariyadi Portfolio'}
 			/>
 			<meta property='og:site_name' content='Portfolio' />
-			<meta property='og:url' content='http://localhost:3000/' />
+			<meta property='og:url' content='https://trihariyadi.vercel.app/' />
 			<meta name='twitter:card' content='portfolio' />
 			<meta property='twitter:title' content={title || 'Tri Hariyadi'} />
 			<meta property='twitter:description' content={desc || 'Tri Hariyadi Portfolio'} />
@@ -30,7 +30,14 @@ const Metadata: React.FC<{ title?: string; desc?: string; canonical?: string }> 
 			<link rel='apple-touch-icon' href='/static/images/favicon.ico' />
 			<meta property='og:image' content='' />
 			<meta name='twitter:image' content='' />
-			<link rel='canonical' href={`http://localhost:3000${canonical}`} />
+			<link
+				rel='canonical'
+				href={
+					canonical
+						? `https://trihariyadi.vercel.app${canonical}`
+						: 'https://trihariyadi.vercel.app'
+				}
+			/>
 		</Head>
 	);
 };
