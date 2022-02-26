@@ -19,15 +19,16 @@ export const getServerSideProps: GetServerSideProps = async ({ res }) => {
 			{
 				development: 'pages',
 				production: './.next/server/pages',
-			}[process.env.NODE_ENV]
+			}[process.env.NODE_ENV],
+			{ withFileTypes: true }
 		)
 		.filter(staticPage => {
 			return staticPage;
 		})
 		.map(staticPagePath => {
-			const path = staticPagePath.replace('.html', '');
-			const route = path === 'index' ? '' : path;
-			return `${getBaseUrl(process.env.NODE_ENV)}${route}`;
+			// const path = staticPagePath.replace('.html', '');
+			// const route = path === 'index' ? '' : path;
+			return `${getBaseUrl(process.env.NODE_ENV)}${staticPagePath}`;
 		});
 
 	const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
