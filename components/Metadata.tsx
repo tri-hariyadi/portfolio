@@ -30,6 +30,11 @@ const Metadata: React.FC<{ title?: string; desc?: string; canonical?: string }> 
 			<link rel='apple-touch-icon' href='/static/images/favicon.ico' />
 			<meta property='og:image' content='' />
 			<meta name='twitter:image' content='' />
+			<meta name='robots' content='all' />
+			<meta name='googlebot' content='index,follow' />
+			<meta name='google' content='nositelinkssearchbox' />
+			<meta name='googlebot' content='notranslate' />
+			<meta name='google-site-verification' content='FCtXotnS-ciMc4jhZvubbbNgCBCJ8pMHNQhRglXoO70' />
 			<link
 				rel='canonical'
 				href={
@@ -37,6 +42,7 @@ const Metadata: React.FC<{ title?: string; desc?: string; canonical?: string }> 
 						? `https://trihariyadi.vercel.app${canonical}`
 						: 'https://trihariyadi.vercel.app'
 				}
+				key='canonical'
 			/>
 		</Head>
 	);
