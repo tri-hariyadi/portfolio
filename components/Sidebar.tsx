@@ -44,7 +44,7 @@ const Sidebar = () => {
 
 			<div className='flex justify-around w-9/12 mx-auto my-5 text-green md:w-full'>
 				<a
-					href='https://www.youtube.com/channel/UCLdrHObKonAJYD1NCko_Bng'
+					href='https://www.youtube.com'
 					target='_blank'
 					rel='noopener noreferrer'
 				>
