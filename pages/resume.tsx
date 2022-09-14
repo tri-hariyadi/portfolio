@@ -41,8 +41,8 @@ const Resume = () => {
 							<li className='step'>
 								<div className='relative'>
 									<h5 className='my-2 text-xl font-bold'>Universitas Pelita Bangsa</h5>
-									<p className='font-semibold'>Teknik Informatika(2018 - 2022) Tahun Ke-4</p>
-									<p>IPK 3,53</p>
+									<p className='font-semibold'>Teknik Informatika(2018 - 2022)</p>
+									<p>IPK 3,54</p>
 									<p>Mengikuti Program Kreativitas Mahasiswa 2019</p>
 								</div>
 							</li>

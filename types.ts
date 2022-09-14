@@ -16,7 +16,7 @@ export interface IProject {
 	id: number;
 	name: string;
 	description: string;
-	image_path: string;
+	image_path: Array<string>;
 	deployed_url: string;
 	github_url: string;
 	category: Category[];

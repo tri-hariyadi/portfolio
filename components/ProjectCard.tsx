@@ -6,6 +6,7 @@ import { MdClose } from 'react-icons/md';
 import { BsCheckSquareFill } from 'react-icons/bs';
 import { fadeInUp, stagger } from '../animations';
 import { IProject } from '../types';
+import Carousel from './Carousel';
 
 const ProjectCard: FunctionComponent<{
 	project: IProject;
@@ -29,7 +30,7 @@ const ProjectCard: FunctionComponent<{
 	return (
 		<div>
 			<Image
-				src={image_path}
+				src={image_path[0]}
 				alt={name}
 				className='cursor-pointer'
 				onClick={() => setShowDetail(id)}
@@ -42,20 +43,23 @@ const ProjectCard: FunctionComponent<{
 			{showDetail === id && (
 				<div className='fixed top-0 bottom-0 left-0 right-0 z-10 overflow-y-auto h-full bg-[rgba(0,0,0,.4)] w-full flex items-center justify-center'>
 					<div
-						className={`relative grid max-h-[95%] overflow-y-scroll w-[96%] md:w-[94%] lg:w-10/12
+						className={`relative grid max-h-[95%] overflow-y-scroll w-[97%] md:w-[95%] lg:w-10/12
 						text-black bg-gray-100 rounded-xl md:p-10 p-3
 						md:grid-cols-2 gap-x-12 dark:text-white dark:bg-dark-100 shadow-custom-light dark:shadow-custom-dark`}
 					>
 						<motion.div variants={stagger} initial='initial' animate='animate'>
 							<motion.div variants={fadeInUp} className='border-4 border-gray-100'>
-								<Image
-									src={image_path}
+								{/* <Image
+									src={image_path[0]}
 									alt={name}
 									className='cursor-pointer'
 									layout='responsive'
 									height='150'
 									width='300'
-								/>
+								/> */}
+									<div className='w-full flex justify-center'>
+										<Carousel images={image_path} />
+									</div>
 							</motion.div>
 							<motion.div variants={fadeInUp} className='flex justify-center my-4 space-x-3'>
 								<a

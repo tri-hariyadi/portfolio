@@ -74,6 +74,11 @@ export const languages: Skill[] = [
 		name: 'MongoDB',
 		level: '80',
 	},
+	{
+		Icon: BsCircleFill,
+		name: 'Docker',
+		level: '80',
+	},
 ];
 
 export const tools: Skill[] = [
@@ -102,10 +107,96 @@ export const tools: Skill[] = [
 export const projects: IProject[] = [
 	{
 		id: 1,
+		name: 'Smart Laundry Mobile Android & iOS',
+		description:
+			'Aplikasi untuk pemesanan laundry secara online',
+		image_path: ['/images/smart-laundry-mobile-covers.jpg', '/images/sl_mobile/welcome_1.jpg', '/images/sl_mobile/welcome_2.jpg',
+			'/images/sl_mobile/login_register.jpg', '/images/sl_mobile/home_track.jpg', '/images/sl_mobile/history.jpg',
+			'/images/sl_mobile/profile.jpg', '/images/sl_mobile/detail_service.jpg', '/images/sl_mobile/detail_2.jpg', '/images/sl_mobile/address_payment.jpg',
+			'/images/sl_mobile/review_order.jpg', '/images/sl_mobile/google_maps.jpg', '/images/sl_mobile/home_track.jpg'],
+		deployed_url: '',
+		github_url: 'https://github.com/tri-hariyadi/smartlaundry-mobile',
+		category: ['react'],
+		key_techs: [
+			'React Native',
+			'React Hooks',
+			'Typescript',
+			'Google Maps API',
+			'Redux',
+			'Redux Thunk',
+			'Axios',
+			'JWT',
+			'React Native Server-Sent Events',
+		],
+		feature: [
+			'JWT auth',
+			'Memesan servis laundry dalam radius 11 km',
+			'Fitur promo',
+			'Stepper untuk cek progress pengerjaan laundry',
+			'Riwayat pemesanan laundry',
+			'Penilaian dan Ratings layanan jasa laundry',
+			'Get location dan geocoding posisi pelanggan',
+			'Melihat posisi pelanggan dan lokasi laundry dengan google map',
+			'Navigasi dengan google maps untuk kurir',
+		],
+	},
+	{
+		id: 2,
+		name: 'Web Smart Laundry',
+		description:
+			'Aplikasi web untuk management laundry oleh pihak penyedia jasa laundry',
+		image_path: ['/images/sl_web/login.jpg', '/images/sl_web/register_1.jpg', '/images/sl_web/register_2.jpg', '/images/sl_web/dashboard.jpg',
+			'/images/sl_web/servis.jpg', '/images/sl_web/servis_2.jpg', '/images/sl_web/promo.jpg', '/images/sl_web/order.jpg', '/images/sl_web/stock_1.jpg'
+			, '/images/sl_web/stock_2.jpg'],
+		deployed_url: '',
+		github_url: 'https://github.com/tri-hariyadi/smartlaundry-web',
+		category: ['react'],
+		key_techs: [
+			'Next.js',
+			'React',
+			'React Hooks',
+			'Typescript',
+			'Redux',
+			'Redux Thunk',
+			'Bootstrap',
+			'SCSS',
+			'JWT',
+			'Firebase Push Notification',
+		],
+		feature: [
+			'JWT auth',
+			'Menampilkan data pendapatan dan pengeluaran dalam bentuk grafik',
+			'Fitur menambahkan servis laundry',
+			'Fitur menambahkan promo',
+			'Menerima order',
+			'Mengupdate progress pengerjaan order',
+			'Manajemen stok barang',
+			'Melihat Penilaian dan Ratings layanan jasa laundry dari pelanggan',
+		],
+	},
+	{
+		id: 3,
+		name: 'API Smart Laundry',
+		description: 'API service untuk aplikasi Smart Laundry',
+		image_path: ['/images/smart_laundry_api_cover.jpg'],
+		deployed_url: '',
+		github_url: 'https://github.com/tri-hariyadi/api-smart-laundry',
+		category: ['node', 'mongo'],
+		key_techs: [
+			'Express',
+			'Mongo',
+			'JWT Auth',
+			'Firebase Push Notification',
+			'Server-Sent Events',
+		],
+		feature: [],
+	},
+	{
+		id: 4,
 		name: 'Web Admin Absensi Mobile',
 		description:
 			'Aplikasi web admin yang digunakan untuk mengelola rekap data absensi karyawan, pembayaran reimbursement dan mengirim pengumuman penting. (*Login menggunakan => email: admin@gmail.com, password: admin123)',
-		image_path: '/images/web_absensi_mobile.png',
+		image_path: ['/images/web_absensi_mobile.png'],
 		deployed_url: 'https://web-absensi-mobile.vercel.app',
 		github_url: 'https://github.com/tri-hariyadi/app_web_absensi_mobile',
 		category: ['react'],
@@ -134,9 +225,9 @@ export const projects: IProject[] = [
 		],
 	},
 	{
-		id: 2,
+		id: 5,
 		name: 'Absensi Mobile',
-		image_path: '/images/absensi_mobile.png',
+		image_path: ['/images/absensi_mobile.png'],
 		deployed_url: '#',
 		github_url: 'https://github.com/tri-hariyadi/app-absensi-mobile',
 		category: ['react'],
@@ -146,9 +237,9 @@ export const projects: IProject[] = [
 	},
 
 	{
-		id: 3,
+		id: 6,
 		name: 'API Absensi Mobile',
-		image_path: '/images/api_absensi.png',
+		image_path: ['/images/api_absensi.png'],
 		deployed_url: 'https://floating-meadow-53357.herokuapp.com/',
 		github_url: 'https://github.com/tri-hariyadi/app-api-absensi-mobile',
 		category: ['node', 'mongo'],
@@ -157,9 +248,9 @@ export const projects: IProject[] = [
 	},
 
 	{
-		id: 4,
+		id: 7,
 		name: 'luxury_pwa',
-		image_path: '/images/luxury_pwa.png',
+		image_path: ['/images/luxury_pwa.png'],
 		deployed_url: 'https://luxury-pwa.vercel.app/',
 		github_url: 'https://github.com/tri-hariyadi/luxury_pwa',
 		category: ['react'],
@@ -168,9 +259,9 @@ export const projects: IProject[] = [
 	},
 
 	{
-		id: 5,
+		id: 8,
 		name: 'CMS BAF Mobile',
-		image_path: '/images/cms_baf_mobile.png',
+		image_path: ['/images/cms_baf_mobile.png'],
 		deployed_url: '#',
 		github_url: '#',
 		category: ['react'],
@@ -188,9 +279,9 @@ export const projects: IProject[] = [
 	},
 
 	{
-		id: 6,
+		id: 9,
 		name: 'Agent Management System',
-		image_path: '/images/ams.png',
+		image_path: ['/images/ams.png'],
 		deployed_url: 'https://xtra.baf.id/register',
 		github_url: '#',
 		category: ['react'],
@@ -200,9 +291,9 @@ export const projects: IProject[] = [
 	},
 
 	{
-		id: 7,
+		id: 10,
 		name: 'Incentive Management System',
-		image_path: '/images/ims.png',
+		image_path: ['/images/ims.png'],
 		deployed_url: '#',
 		github_url: '#',
 		category: ['react'],
@@ -219,9 +310,9 @@ export const projects: IProject[] = [
 	},
 
 	{
-		id: 8,
+		id: 11,
 		name: 'SANDIA',
-		image_path: '/images/sandia.png',
+		image_path: ['/images/sandia.png'],
 		deployed_url: 'https://sandia.baf.id/',
 		github_url: '#',
 		category: ['react'],

@@ -23,3 +23,18 @@ body {
 		@apply relative mb-[30px] ml-[21px] before:content-[""] before:absolute before:left-[calc(-21px)] before:w-1 before:h-128 before:mt-2 before:bg-blue-500 after:content-[""] after:absolute after:top-[4px] after:left-[calc(-29px)] after:w-[20px] after:h-[20px] after:bg-blue-500 after:rounded-full;
 	}
 }
+
+.carousel {
+  display: inline-flex;
+  overflow-x: hidden;
+/*  scroll snap is a great feature which will center the image on snap on touch screen devices  */
+  scroll-snap-type: x mandatory;
+/* all below will hide the scrollbar on all browsers.    */
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none; /* For Firefox */
+  -ms-overflow-style: none; /* For Internet Explorer and Edge */
+}
+
+.carousel::-webkit-scrollbar {
+	width: 0px;
+}
