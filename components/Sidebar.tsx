@@ -26,11 +26,11 @@ const Sidebar = () => {
 		<div>
 			<img
 				className='w-32 h-32 mx-auto rounded-full'
-				width={200}
-				height={200}
+				// width={200}
+				// height={200}
 				src={`${prefix}/foto_profile.png`}
 				alt='user avatar'
-				loader={sanityIoImageLoader}
+				// loader={sanityIoImageLoader}
 			/>
 			<h3 className='my-4 text-3xl font-medium tracking-wider font-kaushan'>
 				<span className='text-green'>Tri </span>

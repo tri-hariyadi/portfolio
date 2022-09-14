@@ -39,10 +39,10 @@ const ProjectCard: FunctionComponent<{
 				alt={name}
 				className='cursor-pointer'
 				onClick={() => setShowDetail(id)}
-				layout='responsive'
-				height='170'
-				width='300'
-				loader={sanityIoImageLoader}
+				// layout='responsive'
+				// height='170'
+				// width='300'
+				// loader={sanityIoImageLoader}
 			/>
 			<p className='my-2 text-center'>{name}</p>
 
