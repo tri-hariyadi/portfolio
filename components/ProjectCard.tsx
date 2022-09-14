@@ -76,11 +76,10 @@ const ProjectCard: FunctionComponent<{
 									?
 									<a
 										href={`${prefix}/assets/smartlaundry.apk`}
+										download='smartlaundry.apk'
 										className='flex px-4 py-2 space-x-3 text-lg bg-gray-300 item-center dark:bg-dark-200 rounded-md items-center hover:shadow-xl shadow-gray-500 hover:bg-gray-200'
-										target='_blank'
-										rel='noopener noreferrer'
 									>
-										<AiFillProject /> <span className='hidden sm:block'>Deployed url</span>
+										<AiFillProject /> <span className='hidden sm:block'>Download App</span>
 									</a>
 									:
 									<a
