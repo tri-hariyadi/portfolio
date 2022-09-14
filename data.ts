@@ -139,6 +139,7 @@ export const projects: IProject[] = [
 			'Melihat posisi pelanggan dan lokasi laundry dengan google map',
 			'Navigasi dengan google maps untuk kurir',
 		],
+		isMobile: true
 	},
 	{
 		id: 2,

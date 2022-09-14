@@ -1,5 +1,4 @@
 import { motion } from 'framer-motion';
-import Image from 'next/image';
 import { FunctionComponent } from 'react';
 import { AiFillGithub, AiFillProject } from 'react-icons/ai';
 import { MdClose } from 'react-icons/md';
@@ -8,10 +7,6 @@ import { fadeInUp, stagger } from '../animations';
 import { IProject } from '../types';
 import Carousel from './Carousel';
 import { prefix } from '../prefix';
-
-const sanityIoImageLoader = ({ src, width, quality }) => {
-  return `https://cdn.sanity.io/${src}?w=${width}&q=${quality || 75}`
-}
 
 const ProjectCard: FunctionComponent<{
 	project: IProject;
@@ -28,6 +23,7 @@ const ProjectCard: FunctionComponent<{
 		key_techs,
 		id,
 		feature,
+		isMobile
 	},
 	showDetail,
 	setShowDetail,
@@ -54,7 +50,7 @@ const ProjectCard: FunctionComponent<{
 						md:grid-cols-2 gap-x-12 dark:text-white dark:bg-dark-100 shadow-custom-light dark:shadow-custom-dark`}
 					>
 						<motion.div variants={stagger} initial='initial' animate='animate'>
-							<motion.div variants={fadeInUp} className='border-4 border-gray-100'>
+							<motion.div variants={fadeInUp} className='border-4 border-transparent'>
 								{/* <Image
 									src={image_path[0]}
 									alt={name}
@@ -76,14 +72,26 @@ const ProjectCard: FunctionComponent<{
 								>
 									<AiFillGithub /> <span className='hidden sm:block'>Github</span>
 								</a>
-								<a
-									href={deployed_url}
-									className='flex px-4 py-2 space-x-3 text-lg bg-gray-300 item-center dark:bg-dark-200 rounded-md items-center hover:shadow-xl shadow-gray-500 hover:bg-gray-200'
-									target='_blank'
-									rel='noopener noreferrer'
-								>
-									<AiFillProject /> <span className='hidden sm:block'>Deployed url</span>
-								</a>
+								{isMobile
+									?
+									<a
+										href={`${prefix}/assets/smartlaundry.apk`}
+										className='flex px-4 py-2 space-x-3 text-lg bg-gray-300 item-center dark:bg-dark-200 rounded-md items-center hover:shadow-xl shadow-gray-500 hover:bg-gray-200'
+										target='_blank'
+										rel='noopener noreferrer'
+									>
+										<AiFillProject /> <span className='hidden sm:block'>Deployed url</span>
+									</a>
+									:
+									<a
+										href={deployed_url}
+										className='flex px-4 py-2 space-x-3 text-lg bg-gray-300 item-center dark:bg-dark-200 rounded-md items-center hover:shadow-xl shadow-gray-500 hover:bg-gray-200'
+										target='_blank'
+										rel='noopener noreferrer'
+									>
+										<AiFillProject /> <span className='hidden sm:block'>Deployed url</span>
+									</a>
+								}
 							</motion.div>
 						</motion.div>
 

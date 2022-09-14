@@ -22,6 +22,7 @@ export interface IProject {
 	category: Category[];
 	key_techs: string[];
 	feature?: Array<string>;
+	isMobile?: boolean;
 }
 
 export type Category = 'react' | 'node' | 'express' | 'django' | 'mongo';

@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import { AiFillGithub, AiFillLinkedin, AiFillYoutube } from 'react-icons/ai';
 import { GoLocation } from 'react-icons/go';
 import { GiTie } from 'react-icons/gi';
@@ -6,10 +5,6 @@ import { BsFillMoonStarsFill, BsFillSunFill } from 'react-icons/bs';
 import { useTheme } from 'next-themes';
 import { useEffect, useState } from 'react';
 import { prefix } from '../prefix';
-
-const sanityIoImageLoader = ({ src, width, quality }) => {
-  return `https://cdn.sanity.io/${src}?w=${width}&q=${quality || 75}`
-}
 
 const Sidebar = () => {
 	const { theme, setTheme } = useTheme();
@@ -42,7 +37,7 @@ const Sidebar = () => {
 			<a
 				className='flex items-center justify-center px-2 py-2 my-3 bg-gray-200 rounded-full
       dark:bg-dark-200 hover:shadow-md hover:shadow-gray-500/50 hover:bg-gray-100'
-				href='/assets/CV_Tri_Hariyadi.pdf'
+				href={`${prefix}/assets/CV_Tri_Hariyadi.pdf`}
 				download='CV_Tri_Hariyadi.pdf'
 			>
 				<GiTie className='w-6 h-6' /> Download Resume
