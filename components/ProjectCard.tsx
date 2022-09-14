@@ -105,7 +105,7 @@ const ProjectCard: FunctionComponent<{
 								variants={fadeInUp}
 								className='flex flex-wrap mt-5 space-x-2 text-sm tracking-wider mb-4'
 							>
-								{key_techs.map(item => (
+								{key_techs.map((item) => (
 									<span
 										className='px-2 py-1 my-1 bg-gray-300 rounded-lg dark:bg-dark-700 inline-flex'
 										key={item}
