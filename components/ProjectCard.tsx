@@ -9,10 +9,8 @@ import { IProject } from '../types';
 import Carousel from './Carousel';
 import { prefix } from '../prefix';
 
-function GraphCMSImageLoader({ src, width }) {
-  const relativeSrc = (src) => src.split("/").pop();
-
-  return `https://media.graphcms.com/resize=width:${width}/${relativeSrc(src)}`;
+const sanityIoImageLoader = ({ src, width, quality }) => {
+  return `https://cdn.sanity.io/${src}?w=${width}&q=${quality || 75}`
 }
 
 const ProjectCard: FunctionComponent<{
@@ -44,7 +42,7 @@ const ProjectCard: FunctionComponent<{
 				layout='responsive'
 				height='170'
 				width='300'
-				loader={GraphCMSImageLoader}
+				loader={sanityIoImageLoader}
 			/>
 			<p className='my-2 text-center'>{name}</p>
 
