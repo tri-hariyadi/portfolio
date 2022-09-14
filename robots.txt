@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://trihariyadi.vercel.app/sitemap.xml
