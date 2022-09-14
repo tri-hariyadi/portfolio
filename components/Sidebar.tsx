@@ -7,6 +7,12 @@ import { useTheme } from 'next-themes';
 import { useEffect, useState } from 'react';
 import { prefix } from '../prefix';
 
+function GraphCMSImageLoader({ src, width }) {
+  const relativeSrc = (src) => src.split("/").pop();
+
+  return `https://media.graphcms.com/resize=width:${width}/${relativeSrc(src)}`;
+}
+
 const Sidebar = () => {
 	const { theme, setTheme } = useTheme();
 	const [dark, setDark] = useState(false);
@@ -26,6 +32,7 @@ const Sidebar = () => {
 				height={200}
 				src={`${prefix}/foto_profile.png`}
 				alt='user avatar'
+				loader={GraphCMSImageLoader}
 			/>
 			<h3 className='my-4 text-3xl font-medium tracking-wider font-kaushan'>
 				<span className='text-green'>Tri </span>

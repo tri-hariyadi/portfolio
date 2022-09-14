@@ -9,6 +9,12 @@ import { IProject } from '../types';
 import Carousel from './Carousel';
 import { prefix } from '../prefix';
 
+function GraphCMSImageLoader({ src, width }) {
+  const relativeSrc = (src) => src.split("/").pop();
+
+  return `https://media.graphcms.com/resize=width:${width}/${relativeSrc(src)}`;
+}
+
 const ProjectCard: FunctionComponent<{
 	project: IProject;
 	showDetail: number | null;
@@ -38,6 +44,7 @@ const ProjectCard: FunctionComponent<{
 				layout='responsive'
 				height='170'
 				width='300'
+				loader={GraphCMSImageLoader}
 			/>
 			<p className='my-2 text-center'>{name}</p>
 
