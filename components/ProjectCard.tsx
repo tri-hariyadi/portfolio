@@ -7,6 +7,7 @@ import { BsCheckSquareFill } from 'react-icons/bs';
 import { fadeInUp, stagger } from '../animations';
 import { IProject } from '../types';
 import Carousel from './Carousel';
+import { prefix } from '../prefix';
 
 const ProjectCard: FunctionComponent<{
 	project: IProject;
@@ -30,7 +31,7 @@ const ProjectCard: FunctionComponent<{
 	return (
 		<div>
 			<Image
-				src={image_path[0]}
+				src={`${prefix}${image_path[0]}`}
 				alt={name}
 				className='cursor-pointer'
 				onClick={() => setShowDetail(id)}

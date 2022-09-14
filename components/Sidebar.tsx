@@ -5,6 +5,7 @@ import { GiTie } from 'react-icons/gi';
 import { BsFillMoonStarsFill, BsFillSunFill } from 'react-icons/bs';
 import { useTheme } from 'next-themes';
 import { useEffect, useState } from 'react';
+import { prefix } from '../prefix';
 
 const Sidebar = () => {
 	const { theme, setTheme } = useTheme();
@@ -23,7 +24,7 @@ const Sidebar = () => {
 				className='w-32 h-32 mx-auto rounded-full'
 				width={200}
 				height={200}
-				src={require('../public/foto_profile.png')}
+				src={`${prefix}/foto_profile.png`}
 				alt='user avatar'
 			/>
 			<h3 className='my-4 text-3xl font-medium tracking-wider font-kaushan'>

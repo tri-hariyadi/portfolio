@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+import { prefix } from '../prefix';
 
 const Carousel = ({ images }: {images: Array<string>}) => {
   // We will start by storing the index of the current image in the state.
@@ -82,7 +83,7 @@ const Carousel = ({ images }: {images: Array<string>}) => {
           {sliderControl(true)}
           {images.map((img, i) => (
             <div className="w-full flex-shrink-0" key={img} ref={refs[i]}>
-              <img src={img} className="w-full object-contain" />
+              <img src={`${prefix}img`} className="w-full object-contain" />
             </div>
           ))}
           {sliderControl()}
