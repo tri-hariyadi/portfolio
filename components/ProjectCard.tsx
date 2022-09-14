@@ -34,7 +34,7 @@ const ProjectCard: FunctionComponent<{
 }) => {
 	return (
 		<div>
-			<Image
+			<img
 				src={`${prefix}${image_path[0]}`}
 				alt={name}
 				className='cursor-pointer'

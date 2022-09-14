@@ -24,7 +24,7 @@ const Sidebar = () => {
 
 	return (
 		<div>
-			<Image
+			<img
 				className='w-32 h-32 mx-auto rounded-full'
 				width={200}
 				height={200}
